@@ -10,7 +10,7 @@ public class task_2 {
 
         float scale = (float) Math.pow(10, 1);
         float sumTemperature = 0;
-        int num_healthy_patient = 0;
+        int sumHealthyPatient = 0;
 
         float[] tempPatients = new float[PATIENT_NUMBER];
         for(int i = 0; i <= tempPatients.length - 1; i++) {
@@ -18,11 +18,11 @@ public class task_2 {
             tempPatients[i] = (float) Math.ceil(temperature * scale) / scale;
             sumTemperature += temperature;
             if(temperature >= MIN_TEMP_HEALTHY_PATIENT && temperature <= MAX_TEMP_HEALTHY_PATIENT) {
-                num_healthy_patient++;
+                sumHealthyPatient++;
             }
         }
         System.out.println("Температуры пациентов: " + Arrays.toString(tempPatients).replaceAll("[\\[\\]]",""));
         System.out.println("Средняя температура: " + Math.ceil((sumTemperature / PATIENT_NUMBER) * scale) / scale);
-        System.out.println("Количество здоровых: " + num_healthy_patient);
+        System.out.println("Количество здоровых: " + sumHealthyPatient);
     }
 }
