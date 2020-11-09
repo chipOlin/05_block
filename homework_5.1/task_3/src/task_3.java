@@ -13,11 +13,11 @@ public class task_3 {
                 }
             }
         }
-        /*for (int i = 0; i < arrayX.length; i++) {
-            for (int j = 0; j < arrayX[i].length; j++) {
-                System.out.print(arrayX[i][j]);
+        for (String[] i : arrayX) {
+            for (String j : i) {
+                System.out.print(j);
             }
             System.out.println();
-        }*/
+        }
     }
 }
