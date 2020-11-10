@@ -2,11 +2,11 @@ import java.util.Arrays;
 
 public class task_2 {
     public static void main(String[] args) {
-        int PATIENT_NUMBER = 30;
-        int MIN_TEMP_PATIENT = 32;
-        int MAX_TEMP_PATIENT = 40;
-        float MIN_TEMP_HEALTHY_PATIENT = 36.2f;
-        float MAX_TEMP_HEALTHY_PATIENT = 36.9f;
+        final int PATIENT_NUMBER = 30;
+        final int MIN_TEMP_PATIENT = 32;
+        final int MAX_TEMP_PATIENT = 40;
+        final float MIN_TEMP_HEALTHY_PATIENT = 36.2f;
+        final float MAX_TEMP_HEALTHY_PATIENT = 36.9f;
 
         float scale = (float) Math.pow(10, 1);
         float sumTemperature = 0;
