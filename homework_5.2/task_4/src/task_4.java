@@ -5,59 +5,60 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class task_4 {
+    public static ArrayList<String> toDoList = new ArrayList<>();
+
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        ArrayList<String> todoList = new ArrayList<>();
 
         System.out.print("Введите команду: ");
         while (true) {
             String inRow = in.nextLine();
             if (inRow.isEmpty()) break;
 
-            final String regex = "(^[a-zA-Z]+\\s?\\d?)(.+)";
+            final String regex = "(^[a-zA-Z]+\\s?\\d?)(.+)?";
             final Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
             final Matcher matcher = pattern.matcher(inRow);
 
             if (matcher.find()) {
-                System.out.println(matcher.group(1));
-                System.out.println(matcher.group(2));
                 String[] command = matcher.group(1).trim().split("\\s");
                 if (command.length > 0) {
                     switch (command[0]) {
-                        case "LIST"   -> System.out.println("List");
-                        case "ADD"    -> System.out.println("Add");
+                        case "LIST"   -> System.out.println(getToDoList());
+                        case "ADD"    -> System.out.println(addToDoList(command, matcher.group(2).trim()));
                         case "EDIT"   -> System.out.println("Edit");
                         case "DELETE" -> System.out.println("Delete");
-                        default -> System.out.println("switch Команда не распознана, попробуйте снова!");
+                        default -> System.out.println("no_switch!");
                     }
-                }
-                System.out.println(Arrays.toString(command));
-                /*System.out.println("Full match: " + matcher.group(0));
-                for (int i = 1; i <= matcher.groupCount(); i++) {
-                    System.out.println("Group " + i + ": " + matcher.group(i).trim());
-                }*/
-            } else System.out.println("find Команда не распознана, попробуйте снова!");
-            /*String command = in.nextLine();
-            if (!command.isEmpty()) {
-                switch (command) {
-                    case "LIST":
-                        System.out.println("List");
-                        break;
-                    case "ADD":
-                        System.out.println("Add");
-                        break;
-                    case "EDIT":
-                        System.out.println("Edit");
-                        break;
-                    case "DELETE":
-                        System.out.println("Delete");
-                        break;
-                    default:
-                        break;
-                }
-            } else break;*/
+                } else System.out.println("no_command!");
+            } else System.out.println("no_find!");
         }
         in.close();
         System.out.println("Программа завершила работу!");
+    }
+
+    private static String addToDoList(String[] command, String text) {
+        if (text.length() > 0) {
+            if (command.length > 1) {
+                int index = Integer.parseInt(command[1]);
+                if (index <= toDoList.size()) toDoList.add(index, text);
+                else toDoList.add(text);
+            } else {
+                toDoList.add(0, text);
+            }
+            return "Дело добавлено!";
+        } else return "Вы не дали название делу";
+    }
+
+    private static String getToDoList() {
+        if (toDoList.size() > 0) {
+            StringBuilder list = new StringBuilder();
+            for (int i =0; i < toDoList.size(); i++) {
+                if (i != 0) list.append("\n");
+                list.append(i).append(" - ").append(toDoList.get(i));
+            }
+            return String.valueOf(list);
+        } else {
+            return("Список дел пуст!");
+        }
     }
 }
