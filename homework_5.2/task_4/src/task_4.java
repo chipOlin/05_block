@@ -25,8 +25,10 @@ public class task_4 {
                     switch (command[0]) {
                         case "LIST"   -> System.out.println(getToDoList());
                         case "ADD"    -> System.out.println(addToDoList(command, matcher.group(2).trim()));
-                        case "EDIT"   -> System.out.println("Edit");
-                        case "DELETE" -> System.out.println("Delete");
+                        case "EDIT"   -> System.out.println(editToDoList(command, matcher.group(2).trim()));
+                        case "DELETE" -> System.out.println(deleteToDoList(command)
+                                                            ? "Дело удалено!"
+                                                            : "Ошибка удаления");
                         default -> System.out.println("no_switch!");
                     }
                 } else System.out.println("no_command!");
@@ -34,6 +36,16 @@ public class task_4 {
         }
         in.close();
         System.out.println("Программа завершила работу!");
+    }
+
+    private static boolean deleteToDoList(String[] command) {
+        //System.out.println(Arrays.toString(command));
+        Object o = new int[Integer.parseInt(command[1])];
+        return toDoList.remove(o);
+    }
+
+    private static String editToDoList(String[] command, String text) {
+        return null;
     }
 
     private static String addToDoList(String[] command, String text) {
