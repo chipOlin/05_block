@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -24,41 +23,57 @@ public class task_4 {
                 if (command.length > 0) {
                     switch (command[0]) {
                         case "LIST"   -> System.out.println(getToDoList());
-                        case "ADD"    -> System.out.println(addToDoList(command, matcher.group(2).trim()));
-                        case "EDIT"   -> System.out.println(editToDoList(command, matcher.group(2).trim()));
-                        case "DELETE" -> System.out.println(deleteToDoList(command)
-                                                            ? "Дело удалено!"
-                                                            : "Ошибка удаления");
-                        default -> System.out.println("no_switch!");
+                        case "ADD"    -> {
+                            String toDo;
+                            if (matcher.group(2) == null) {
+                                System.out.println("Вы не задали название делу!");
+                                continue;
+                            } else toDo = matcher.group(2).trim();
+                            System.out.println(addToDoList(command, toDo));
+                        }
+                        case "EDIT"   -> {
+                            String toDo;
+                            if (matcher.group(2) == null) {
+                                System.out.println("Вы не задали название делу!");
+                                continue;
+                            } else toDo = matcher.group(2).trim();
+                            System.out.println(editToDoList(command, toDo));
+                        }
+                        case "DELETE" -> System.out.println(deleteToDoList(command));
+                        default -> System.out.println("Команда не найдена!");
                     }
-                } else System.out.println("no_command!");
-            } else System.out.println("no_find!");
+                }
+            } else System.out.println("Команда не найдена!");
         }
         in.close();
         System.out.println("Программа завершила работу!");
     }
 
-    private static boolean deleteToDoList(String[] command) {
-        //System.out.println(Arrays.toString(command));
-        Object o = new int[Integer.parseInt(command[1])];
-        return toDoList.remove(o);
+    private static String deleteToDoList(String[] command) {
+        if (command.length > 1) {
+            int index = Integer.parseInt(command[1]);
+            if (index < toDoList.size()) toDoList.remove(index);
+        }
+        return "Дело удалено!";
     }
 
     private static String editToDoList(String[] command, String text) {
-        return null;
+        if (command.length > 1) {
+            int index = Integer.parseInt(command[1]);
+            if (index < toDoList.size()) toDoList.set(index, text);
+        }
+        return "Изменение внесено!";
     }
 
     private static String addToDoList(String[] command, String text) {
-        if (text.length() > 0) {
-            if (command.length > 1) {
-                int index = Integer.parseInt(command[1]);
-                if (index <= toDoList.size()) toDoList.add(index, text);
-                else toDoList.add(text);
-            } else {
-                toDoList.add(0, text);
-            }
-            return "Дело добавлено!";
-        } else return "Вы не дали название делу";
+        if (command.length > 1) {
+            int index = Integer.parseInt(command[1]);
+            if (index < toDoList.size()) toDoList.add(index, text);
+            else toDoList.add(text);
+        } else {
+            toDoList.add(text);
+        }
+        return "Дело добавлено!";
     }
 
     private static String getToDoList() {
