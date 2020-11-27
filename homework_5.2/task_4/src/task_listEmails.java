@@ -6,18 +6,17 @@ import java.util.regex.Pattern;
 public class task_listEmails {
     public static void main(String[] args) {
         TreeSet<String> email = new TreeSet<>();
-
+        final String regex = "([A-Z]+)\\s?(.+@.+\\..+)?";
+        final Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Введите команду: ");
 
-        Scanner scanner = new Scanner(System.in);
         while (true) {
             String input = scanner.nextLine();
             if (input.equals("")) {
                 break;
             }
 
-            final String regex = "([A-Z]+)\\s?(.+@.+\\..+)?";
-            final Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
             final Matcher matcher = pattern.matcher(input);
 
             if (Pattern.matches(regex, input)) {
