@@ -30,7 +30,7 @@ public class PhoneBook {
         // формат одного контакта "Имя - Телефон"
         // если контактов нет в телефонной книге - вернуть пустой TreeSet
         for (Map.Entry<String, String> entry: phoneBook.entrySet())
-            System.out.println(entry.getKey() + " = " + entry.getValue());
+            System.out.println(entry.getKey() + " - " + entry.getValue());
         return new TreeSet<>();
     }
 
