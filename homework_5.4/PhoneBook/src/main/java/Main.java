@@ -1,9 +1,6 @@
 package main.java;
 
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.TreeMap;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,10 +15,9 @@ public class Main {
             if (inRow.equals("LIST")) {
                 phoneBook.getAllContacts();
             } else {
-                String[] contact = inRow.split("\\s");
-                phoneBook.addContact(contact[1], contact[0]);
+                String[] newContact = inRow.split("\\s");
+                phoneBook.addContact(newContact[1], newContact[0]);
             }
-
         }
         scanner.close();
         System.out.println("Программа завершила работу!");
