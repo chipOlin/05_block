@@ -16,11 +16,12 @@ public class Main {
                 phoneBook.getAllContacts();
             } else {
                 String[] newContact = inRow.split("\\s");
-                phoneBook.addContact(newContact[1], newContact[0]);
+                String inName = newContact[0];
+                String inPhone = newContact[1];
+                phoneBook.addContact(inPhone, inName);
             }
         }
         scanner.close();
         System.out.println("Программа завершила работу!");
-        //([LIST]+)?\s?([А-Я][а-я]+\s)\s?([87]?\s?\d{10})
     }
 }
