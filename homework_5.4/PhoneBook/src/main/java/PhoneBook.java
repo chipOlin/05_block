@@ -1,22 +1,16 @@
 package main.java;
-
 import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
-import java.util.regex.Pattern;
+import java.util.*;
 
 public class PhoneBook {
     TreeMap<String, String> phoneBook = new TreeMap<>();
 
-    public void addContact(String phone, String name) {
+    public void addContact(String name, String phone) {
         // проверьте корректность формата имени и телефона
         // если такой номер уже есть в списке, то перезаписать имя абонента
-        final String regexName = "\\D+";
-        final String regexPhone = "[78]\\d{10}";
-        if (Pattern.matches(regexPhone, phone) && Pattern.matches(regexName, name)) {
-            phoneBook.put(phone, name);
-        }
+        phoneBook.put(phone, name);
+        System.out.println("Контакт добавлен!");
+
     }
 
     public String getNameByPhone(String phone) {
@@ -24,7 +18,7 @@ public class PhoneBook {
         // если контакт не найдены - вернуть пустую строку
         String contactInfo = null;
         if (phoneBook.containsKey(phone)) {
-            contactInfo = phoneBook.get(phone) + " - " + phone;
+            contactInfo = phoneBook.get(phone);
         }
         return contactInfo;
     }
@@ -36,7 +30,7 @@ public class PhoneBook {
         if (phoneBook.containsValue(name)) {
             for (Map.Entry<String, String> entry : phoneBook.entrySet()) {
                 if (entry.getValue().contains(name))
-                    contactInfo.add(name + " - " + entry.getKey());
+                    contactInfo.add(entry.getKey());
             }
             return contactInfo;
         } else {
@@ -49,7 +43,13 @@ public class PhoneBook {
         // если контактов нет в телефонной книге - вернуть пустой TreeSet
         TreeSet<String> contactList = new TreeSet<>();
         for (Map.Entry<String, String> entry: phoneBook.entrySet()) {
-            contactList.add(entry.getValue() + " - " + entry.getKey());
+            Set<String> listPhones = getPhonesByName(entry.getValue());
+            StringBuilder phones = new StringBuilder();
+            int i = 0;
+            for (String str : listPhones) {
+                phones.append(i++ > 0 ? ", " : "").append(str);
+            }
+            contactList.add(entry.getValue() + " - " + phones);
         }
         if (contactList.size() > 0) {
             for (String list : contactList) {
@@ -57,7 +57,9 @@ public class PhoneBook {
             }
             return contactList;
         } else {
+            System.out.println("Список пуст");
             return new TreeSet<>();
         }
     }
+
 }
