@@ -1,6 +1,8 @@
 package main.java;
 import java.util.Map;
-import java.util.*;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 public class PhoneBook {
     TreeMap<String, String> phoneBook = new TreeMap<>();
@@ -16,11 +18,7 @@ public class PhoneBook {
     public String getNameByPhone(String phone) {
         // формат одного контакта "Имя - Телефон"
         // если контакт не найдены - вернуть пустую строку
-        String contactInfo = null;
-        if (phoneBook.containsKey(phone)) {
-            contactInfo = phoneBook.get(phone);
-        }
-        return contactInfo;
+        return phoneBook.getOrDefault(phone, null);
     }
 
     public Set<String> getPhonesByName(String name) {
@@ -32,10 +30,8 @@ public class PhoneBook {
                 if (entry.getValue().contains(name))
                     contactInfo.add(entry.getKey());
             }
-            return contactInfo;
-        } else {
-            return new TreeSet<>();
         }
+        return contactInfo;
     }
 
     public Set<String> getAllContacts() {
