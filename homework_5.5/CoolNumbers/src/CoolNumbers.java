@@ -7,13 +7,13 @@ import java.util.List;
 public class CoolNumbers {
     public static List<String> generateCoolNumbers() {
         List<String> list = new ArrayList<>();
-        final String[] carLetters = new String[] {"А", "В", "Е", "К", "М", "Н", "О", "Р", "С", "Т", "У", "Х"};
+        final String[] carLetters = new String[] {"А","В","Е","К","М","Н","О","Р","С","Т","У","Х"};
         for (String letter : carLetters) {
             for (int num = 0; num < 10; num++) {
                 for (String letter_2 : carLetters) {
                     for (String letter_3 : carLetters) {
                         for (int reg = 1; reg <= 199; reg++) {
-                            String numberCar = String.format("%s%d%d%d%s%s%d", letter, num, num, num, letter_2, letter_3, reg);
+                            String numberCar = String.format("%s%d%d%d%s%s%+03d", letter, num, num, num, letter_2, letter_3, reg);
                             //System.out.println(numberCar);
                             list.add(numberCar);
                         }
