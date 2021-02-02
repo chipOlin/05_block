@@ -13,23 +13,16 @@ public class Main {
 
     public static void main(String[] args) {
 
-        /*List<String> list = CoolNumbers.generateCoolNumbers();
+        List<String> list = CoolNumbers.generateCoolNumbers();
         List<String> sortedList = new ArrayList<>(list);
         HashSet<String> hashSet = new HashSet<>(list);
-        TreeSet<String> treeSet = new TreeSet<>(list);*/
-        String s = "A";
-        int i = 7;
-        String numberCar = String.format("%s%02d", s, i);
-        System.out.println(numberCar);
+        TreeSet<String> treeSet = new TreeSet<>(list);
 
-        //for (int i=1; i<list.size(); i=i+1000) System.out.println(list.get(i));
+        String number = "Е222ОВ193";
 
-        //String number = "Е222ОВ193";
-
-        /*CoolNumbers.bruteForceSearchInList(list ,number);
+        CoolNumbers.bruteForceSearchInList(list ,number);
         CoolNumbers.binarySearchInList(sortedList ,number);
         CoolNumbers.searchInHashSet(hashSet,number);
-        CoolNumbers.searchInTreeSet(treeSet,number);*/
-
+        CoolNumbers.searchInTreeSet(treeSet,number);
     }
 }
