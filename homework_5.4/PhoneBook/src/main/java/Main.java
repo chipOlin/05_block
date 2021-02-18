@@ -1,5 +1,7 @@
 package main.java;
 
+import part1.java.Part1;
+
 import java.util.Scanner;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -8,8 +10,10 @@ import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) {
+        Part1 p1 = new Part1("some text");
+        System.out.println(p1.text);
 
-        PhoneBook phoneBook = new PhoneBook();
+        /*PhoneBook phoneBook = new PhoneBook();
 
         final String regex = "([LIST]+)?\\s?([А-Яа-яA-Za-z]+)?\\s?([87]+\\d{10})?";
         final Pattern pattern = Pattern.compile(regex);
@@ -67,6 +71,6 @@ public class Main {
             }
         }
         scanner.close();
-        System.out.println("Программа завершила работу!");
+        System.out.println("Программа завершила работу!");*/
     }
 }
