@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.TreeSet;
 import java.util.Scanner;
 import java.util.Random;
+import java.util.Collections;
 
 public class Main {
     /*
@@ -17,6 +18,7 @@ public class Main {
 
         List<String> list = CoolNumbers.generateCoolNumbers();
         List<String> arrayList = new ArrayList<>(list);
+        Collections.sort(arrayList);
         HashSet<String> hashSet = new HashSet<>(list);
         TreeSet<String> treeSet = new TreeSet<>(list);
 

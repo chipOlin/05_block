@@ -9,7 +9,8 @@ public class CoolNumbers {
 
     public static List<String> generateCoolNumbers() {
         List<String> carsNumber = new ArrayList<>();
-        final String[] carLetters = new String[] {"А", "В", "Е", "К", "М", "Н", "О", "Р", "С", "Т", "У", "Х"};
+        //final String[] carLetters = new String[] {"А", "В", "Е", "К", "М", "Н", "О", "Р", "С", "Т", "У", "Х"};
+        final String[] carLetters = new String[] {"Х", "У", "Т", "С", "Р", "О", "Н", "М", "К", "Е", "В", "А"};
         for (String letter : carLetters) {
             for (int num = 0; num < 10; num++) {
                 for (String letter_2 : carLetters) {
@@ -63,7 +64,6 @@ public class CoolNumbers {
     }
 
     public static void binarySearchInList(List<String> arrayList, String number) {
-        Collections.sort(arrayList);
         long t = System.nanoTime();
         if (Collections.binarySearch(arrayList, number) >= 0) {
             long c = System.nanoTime() - t;
